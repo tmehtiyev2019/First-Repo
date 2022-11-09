@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <algorithm>
+#include <functional> 
+
+#define MAX 200001
+double a[MAX];
+
+int m, n, i, u, v, w;
+
+int main() 
+{
+scanf("%d %d", &n, &m);
+
+n += n;
+
+for (i = 1; i <= n; i++)
+
+  scanf("%lf", &a[i]);
+
+for (i = 1; i <= m; i++)
+
+{
+
+  scanf("%d %d %d", &u, &v, &w);
+
+  a[u] += w / 2.0;
+
+  a[v] += w / 2.0;
+
+}
+ 
+std::sort(a + 1, a + n + 1, std::greater<double>());
+
+double res = 0;
+
+for (i = 1; i <= n; i++)
+
+  if (i & 1) res += a[i];
+
+  else res -= a[i];
+
+
+printf("%lld\n", (long long)res);
+return 0;
+}
